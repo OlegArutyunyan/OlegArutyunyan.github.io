@@ -6,7 +6,7 @@ import yt_video_template from '../../img/yt_video_template.png'
 import './videoPane.scss'
 
 const VideoPane = () => {
-    const videoArray = [...Array(20)].map(() => (
+    const videoArray = [...Array(10)].map(() => (
         <Col lg={3}>
             <SingleVideo/>
         </Col>
