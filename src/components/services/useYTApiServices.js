@@ -2,7 +2,7 @@ import { useHttp } from "../../hooks/useHttp"
 
 const useYTApiServices = () => {
     const {request} = useHttp()
-    const _apikey = 'AIzaSyCzpQmIEwDSGb3J22rmHqQvIlvdfNpunPU'
+    const _apikey = 
 
     const recommendedVideos = async () => {
                 console.log('execute recommendedVideos')
