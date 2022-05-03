@@ -17,8 +17,8 @@ const App = () => {
         <Sidebar/>
         <VideoPane/>
       </div>
-      <Login/>
-      <Logout/>
+      {/* <Login/>
+      <Logout/> */}
     </main>
   );
 }

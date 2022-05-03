@@ -1,18 +1,49 @@
 import { Row, Col, Container } from 'react-bootstrap'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {fetchRecommendVideos, selectAll} from '../singleVideo/videoSlice'
 
 import SingleVideo from '../singleVideo/SingleVideo'
-import yt_video_template from '../../img/yt_video_template.png'
 
 import './videoPane.scss'
+import store from '../../store/store'
+
 
 const VideoPane = () => {
-    const videoArray = [...Array(10)].map(() => (
-        <Col lg={3}>
-            <SingleVideo/>
-        </Col>
-    ))
+    const dispatch = useDispatch()
+    const {videosLoadingStatus} = useSelector(state => state.videos)
+    const videos = selectAll(store.getState())
 
-    console.log(videoArray)
+    useEffect(() => {
+                console.log('useEffect videoPane')
+        dispatch(fetchRecommendVideos())
+    }, [])
+
+    const renderVideos = () => {
+        console.log('videos array is ', videos)
+        if (videosLoadingStatus === 'loading') {
+            return (
+                <span>Loading...</span>
+            )
+        }
+
+        return videos.map((item, id) => {
+            console.log('mapping videos array with current item ', item)
+            return (
+                <Col lg={3} key={id}>
+                    <SingleVideo video={item}/>
+                </Col>
+            ) 
+        })
+    }
+
+    // const renderVideos = [...Array(1)].map(() => (
+    //     <Col lg={3}>
+    //         <SingleVideo/>
+    //     </Col>
+    // ))
+
+    const videoArray = renderVideos()
 
     return (
         <Container className="videoPane">
