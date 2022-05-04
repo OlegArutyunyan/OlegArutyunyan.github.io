@@ -1,7 +1,7 @@
 import { Row, Col, Container } from 'react-bootstrap'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {fetchRecommendVideos, selectAll} from '../singleVideo/videoSlice'
+import { fetchRecommendVideos, selectAll } from '../singleVideo/videoSlice'
 
 import SingleVideo from '../singleVideo/SingleVideo'
 
@@ -11,7 +11,7 @@ import store from '../../store/store'
 
 const VideoPane = () => {
     const dispatch = useDispatch()
-    const {videosLoadingStatus} = useSelector(state => state.videos)
+    const { videosLoadingStatus } = useSelector(state => state.videos)
     const videos = selectAll(store.getState())
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const VideoPane = () => {
     }, [])
 
     const renderVideos = () => {
-        console.log('videos array is ', videos)
+                console.log('videos array is ', videos)
         if (videosLoadingStatus === 'loading') {
             return (
                 <span>Loading...</span>
@@ -28,20 +28,14 @@ const VideoPane = () => {
         }
 
         return videos.map((item, id) => {
-            console.log('mapping videos array with current item ', item)
+                    console.log('mapping videos array with current item ', item)
             return (
                 <Col lg={3} key={id}>
-                    <SingleVideo video={item}/>
+                    <SingleVideo video={item} />
                 </Col>
-            ) 
+            )
         })
     }
-
-    // const renderVideos = [...Array(1)].map(() => (
-    //     <Col lg={3}>
-    //         <SingleVideo/>
-    //     </Col>
-    // ))
 
     const videoArray = renderVideos()
 

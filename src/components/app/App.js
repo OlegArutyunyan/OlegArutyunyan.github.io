@@ -1,25 +1,20 @@
-import TopPanel from '../topPanel/TopPanel';
+import { Routes, Route } from "react-router-dom";
+import { MainPage, IntroPage } from "../pages";
+import RequireAuth from "../userLogIn/RequireAuth";
 
-import Login from '../googleSingnIn/Login';
-import Logout from '../googleSingnIn/Logout';
-
-import Sidebar from '../sidebar/Sidebar';
-import VideoPane from '../videoPane/VideoPane';
-
-import './app.scss';
+// import './app.scss';
 
 const App = () => {
   console.log("app render")
   return (
-    <main className="App">
-      <TopPanel/>
-      <div className="main_container">
-        <Sidebar/>
-        <VideoPane/>
-      </div>
-      {/* <Login/>
-      <Logout/> */}
-    </main>
+    <Routes>
+      <Route path="/" element={
+        <RequireAuth>
+          <MainPage />
+        </RequireAuth>
+      } />
+      <Route path="/login" element={<IntroPage />} />
+    </Routes>
   );
 }
 

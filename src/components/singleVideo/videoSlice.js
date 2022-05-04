@@ -10,7 +10,7 @@ const initialState = videosAdapter.getInitialState({
 export const fetchRecommendVideos = createAsyncThunk(
     'videos/fetchRecommendVideos',
     () => {
-        const {recommendedVideos} = useYTApiServices()
+        const { recommendedVideos } = useYTApiServices()
         return recommendedVideos()
     }
 )
@@ -23,17 +23,17 @@ const videosSLice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchRecommendVideos.pending, (state) => {state.videosLoadingStatus = 'loading'})
+            .addCase(fetchRecommendVideos.pending, (state) => { state.videosLoadingStatus = 'loading' })
             .addCase(fetchRecommendVideos.fulfilled, (state, action) => {
                 state.videosLoadingStatus = 'idle'
                 videosAdapter.setAll(state, action.payload)
             })
-            .addCase(fetchRecommendVideos.rejected, (state) => {state.videosLoadingStatus = 'error'})
-}
+            .addCase(fetchRecommendVideos.rejected, (state) => { state.videosLoadingStatus = 'error' })
+    }
 })
 
-const {actions, reducer} = videosSLice
-export const {selectAll} = videosAdapter.getSelectors(state => state.videos)
+const { actions, reducer } = videosSLice
+export const { selectAll } = videosAdapter.getSelectors(state => state.videos)
 
 export default reducer
 export const {

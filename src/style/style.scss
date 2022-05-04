@@ -4,3 +4,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.app {
+    height: 100vh;
+    overflow-y: scroll;
+}
+.main_container {
+    display: flex;
+}
+.intro {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    vertical-align: center;
+    justify-content: center;
+}
