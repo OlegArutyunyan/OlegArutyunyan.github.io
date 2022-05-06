@@ -1,21 +1,20 @@
 
 import './singleVideo.scss'
 
-const SingleVideo = ({video}) => {
+const SingleVideo = ({ video }) => {
 
   const id = video.id
-      console.log(`id from single video, `, id)
 
   const link = `https://www.youtube.com/embed/${id}`
   return (
     <div className="singleVideo">
-      <iframe 
-        width="100%" 
-        height="100%" 
+      <iframe
+        width="100%"
+        height="100%"
         src={link}
-        title="YouTube video player" 
-        frameBorder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
       ></iframe>
     </div>
   )

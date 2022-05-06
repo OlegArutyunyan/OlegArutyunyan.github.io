@@ -7,16 +7,22 @@ import SingleVideo from '../singleVideo/SingleVideo'
 
 import './videoPane.scss'
 import store from '../../store/store'
+import useYTApiServices from '../services/useYTApiServices'
 
 
 const VideoPane = () => {
     const dispatch = useDispatch()
     const { videosLoadingStatus } = useSelector(state => state.videos)
+    const { userAccessToken } = useSelector(state => state.user)
     const videos = selectAll(store.getState())
+
+    const {userPersonalData} = useYTApiServices()
 
     useEffect(() => {
                 console.log('useEffect videoPane')
+        userPersonalData(userAccessToken)
         dispatch(fetchRecommendVideos())
+        // eslint-disable-next-line
     }, [])
 
     const renderVideos = () => {
