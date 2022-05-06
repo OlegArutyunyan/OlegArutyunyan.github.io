@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCNsbp2ejty1E4q5ZG2DDAVHMwEHBw7GeE",
+    apiKey: "AIzaSyBy4c342gY8oYXpfEImuSUweVcC3j82fuU",
     authDomain: "alert-cursor-347908.firebaseapp.com",
     projectId: "alert-cursor-347908",
     storageBucket: "alert-cursor-347908.appspot.com",

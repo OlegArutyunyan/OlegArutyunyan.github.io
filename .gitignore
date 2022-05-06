@@ -2,7 +2,7 @@
 
 #mine
 /src/keys
-/src/components/services/firebase.js
+/src/firebase*
 
 # dependencies
 /node_modules

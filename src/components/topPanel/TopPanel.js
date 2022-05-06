@@ -7,9 +7,17 @@ import { userLogOut } from '../userLogIn/userSlice'
 import yt_logo from '../../img/yt_logo.png'
 import "./topPanel.scss"
 
+    import useGoogleAuth from '../services/useGoogleAuth'
+
 const TopPanel = () => {
+        const {RefreshLogin} = useGoogleAuth()
+
     const { userData } = useSelector(state => state.user)
     const dispatch = useDispatch()
+
+    const handleRefresh = () => {
+        RefreshLogin()
+    }
 
     const handleLogOut = () => {
         console.log('user pressed log out')
@@ -44,14 +52,14 @@ const TopPanel = () => {
                 <div className="headers__right_acc">
                     <div className="headers__right_acc-greeting">Hello, {userData.name}</div>
                     {/* <img src={userData.photoURL} alt="user avatar" className='headers__right_acc-avatar' /> */}
-                    {dropDownMenu(userData.photoURL, handleLogOut)}
+                    {dropDownMenu(userData.photoURL, handleRefresh, handleLogOut)}
                 </div>
             </div>
         </div>
     )
 }
 
-const dropDownMenu = (avatar, handleLogOut) => {
+const dropDownMenu = (avatar, handleRefresh, handleLogOut) => {
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
@@ -74,6 +82,11 @@ const dropDownMenu = (avatar, handleLogOut) => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
+                <Dropdown.Item as="button">
+                    <div onClick={handleRefresh}>
+                        Refresh
+                    </div>
+                </Dropdown.Item>
                 <Dropdown.Item as="button">
                     <div onClick={handleLogOut}>
                         Log Out

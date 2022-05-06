@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { userLogin } from '../userLogIn/userSlice';
-import Login from './Login';
+// import { userLogin } from '../userLogIn/userSlice';
+import Login from '../../util/googleLogin/Login';
 
 const UserLogin = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const navigate = useNavigate()
     const { userAccessToken } = useSelector(state => state.user)
 
@@ -17,7 +17,7 @@ const UserLogin = () => {
 
     const handleLogin = () => {
         console.log('User clicked Google login btn')
-        dispatch(userLogin())
+        // dispatch(userLogin())
     }
 
     return (
