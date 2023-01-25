@@ -19,7 +19,8 @@
             justify-content: center;
             align-items: center;
             font-size: 18px;
-            border: 0.01px solid rgb(187, 187, 187);
+            border-left: 1px solid rgb(187, 187, 187);
+            border-top: 1px solid rgb(187, 187, 187);
             color: white;
             font-weight: 600;
 
@@ -51,6 +52,19 @@
                     cursor: pointer;
                 }
             }
+        }
+
+        >.list-good-item:nth-child(even) {
+            border-right: 1px solid rgb(187, 187, 187);
+        }
+
+        
+        >.list-good-item:last-child {
+            border-right: 1px solid rgb(187, 187, 187);
+        }
+
+        >.list-good-item:nth-last-child(-n+2) {
+            border-bottom: 1px solid rgb(187, 187, 187);
         }
     }
 }

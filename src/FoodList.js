@@ -8,14 +8,18 @@ const FoodList = ({ type }) => {
 
     const { goodsList, setGoodsList } = useContext(FoodContext);
 
-    const changeGoodsList = (category, goodToChange, indexOfGood, booleanToChange) => {
+    const changeGoodsList = (category, goodToChange, booleanToChange) => {
         setGoodsList((prevList) => {
             let newList = JSON.parse(JSON.stringify(prevList));
             for (let i = 0; i < newList.length; i++) {
                 if (newList[i].categoryName === category.categoryName) {
-                    newList[i].goods[indexOfGood] = {
-                        name: goodToChange.name,
-                        inBucket: booleanToChange
+                    for (let j = 0; j < newList[i].goods.length; j++) {
+                        if (newList[i].goods[j].name === goodToChange.name) {
+                            newList[i].goods[j] = {
+                                name: goodToChange.name,
+                                inBucket: booleanToChange
+                            }
+                        }
                     }
                 }
             }
@@ -23,8 +27,8 @@ const FoodList = ({ type }) => {
         })
     }
 
-    const handleAdd = (category, goodToChange, indexOfGood) => {
-        changeGoodsList(category, goodToChange, indexOfGood, true);
+    const handleAdd = (category, goodToChange) => {
+        changeGoodsList(category, goodToChange, true);
     }
 
     const handleDelete = (event, category, goodToChange, indexOfGood) => {
@@ -37,7 +41,7 @@ const FoodList = ({ type }) => {
             });
             return;
         }
-        changeGoodsList(category, goodToChange, indexOfGood, false);
+        changeGoodsList(category, goodToChange, false);
     }
 
     const displayGoodsCategories = () => {
@@ -74,12 +78,12 @@ const FoodList = ({ type }) => {
                                             return (
                                                 <div
                                                     className="list-good-item"
-                                                    style={type === 'list' && good.inBucket ? { backgroundColor: 'green' } : {}}
+                                                    style={type === 'list' && good.inBucket ? { backgroundColor: '#24b124' } : {}}
                                                     key={nanoid()}
                                                 >
                                                     <span
                                                         className="name"
-                                                        onClick={() => handleAdd(goodsCategory, good, goodIndex)}
+                                                        onClick={() => handleAdd(goodsCategory, good)}
                                                     >
                                                         {good.name}
                                                     </span>

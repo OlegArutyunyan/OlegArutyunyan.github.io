@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import FoodList from './FoodList';
 import { defaultFoodList } from './data/defaultFoodList';
+import ListChoise from './ListChoise';
 
 import './styles/App.scss';
 
@@ -46,17 +47,21 @@ const App = () => {
                 </form>
                 <div
                     className="app-reset"
-                    onClick={() => setGoodsList(() => defaultFoodList)}>
-
+                    onClick={() => setGoodsList(() => defaultFoodList)}
+                >
+                    <i className="fa-solid fa-arrows-rotate"></i>
                 </div>
             </div>
-            <div className="app-content">
-                <FoodContext.Provider
-                    value={{
-                        goodsList,
-                        setGoodsList
-                    }}
-                >
+            <FoodContext.Provider
+                value={{
+                    goodsList,
+                    setGoodsList,
+                    isFoodList,
+                    setIsFoodList
+                }}
+            >
+                <ListChoise />
+                <div className="app-content">
                     {
 
                         isFoodList ?
@@ -68,24 +73,9 @@ const App = () => {
                                 type={'bucket'}
                             />
                     }
-                </FoodContext.Provider>
-            </div>
-            <div className="app-footer">
-                <div className="app-footer-item">
-                    <button
-                        onClick={() => setIsFoodList(() => true)}
-                    >
-                        Список
-                    </button>
                 </div>
-                <div className="app-footer-item">
-                    <button
-                        onClick={() => setIsFoodList(() => false)}
-                    >
-                        Корзина
-                    </button>
-                </div>
-            </div>
+                <ListChoise />
+            </FoodContext.Provider>
         </div>
     );
 }
