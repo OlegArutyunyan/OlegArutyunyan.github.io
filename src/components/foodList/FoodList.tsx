@@ -1,12 +1,20 @@
-import { useContext } from 'react'
-import { FoodContext } from './App';
+import React, { createContext, useContext } from 'react'
 import { nanoid } from 'nanoid';
+
+import { FoodContext } from './ShoppingList';
+import { IFoodList, IGoodContext, IGood, IFoodContext } from '../../types/interfaces';
 
 import './styles/foodList.scss';
 
-const FoodList = ({ type }) => {
+interface IFoodListProps {
+    type: 'store' | 'bucket'
+}
 
-    const { goodsList, setGoodsList } = useContext(FoodContext);
+const GoodContext = createContext<IGoodContext<IGood | null>>(null);
+
+const FoodList = ({ type }: IFoodListProps) => {
+
+    const { foodList, setFoodList } = useContext(FoodContext) as IFoodContext<IFoodList>;
 
     const changeGoodsList = (category, goodToChange, booleanToChange) => {
         setGoodsList((prevList) => {
@@ -73,30 +81,35 @@ const FoodList = ({ type }) => {
                                     {goodsCategory.categoryName}
                                 </div>
                                 <div className="list-goods">
-                                    {
-                                        goodsCategory.goods.map((good, goodIndex) => {
-                                            return (
-                                                <div
-                                                    className="list-good-item"
-                                                    style={type === 'list' && good.inBucket ? { backgroundColor: '#24b124' } : {}}
-                                                    key={nanoid()}
-                                                >
-                                                    <span
-                                                        className="name"
-                                                        onClick={() => handleAdd(goodsCategory, good)}
+                                    <>
+                                        {
+                                            goodsCategory.goods.map((good, goodIndex) => {
+                                                return (
+                                                    <div
+                                                        className="list-good-item"
+                                                        style={type === 'list' && good.inBucket ? { backgroundColor: '#24b124' } : {}}
+                                                        key={nanoid()}
                                                     >
-                                                        {good.name}
-                                                    </span>
-                                                    <span
-                                                        className="close"
-                                                        onClick={(e) => handleDelete(e, goodsCategory, good, goodIndex)}
-                                                    >
-                                                        ✖
-                                                    </span>
-                                                </div>
-                                            )
-                                        })
-                                    }
+                                                        <span
+                                                            className="name"
+                                                            onClick={() => handleAdd(goodsCategory, good)}
+                                                        >
+                                                            {good.name}
+                                                        </span>
+                                                        <span
+                                                            className="close"
+                                                            onClick={(e) => handleDelete(e, goodsCategory, good, goodIndex)}
+                                                        >
+                                                            ✖
+                                                        </span>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        {goodsCategory.goods.length % 2 !== 0 &&
+                                            <div className="list-good-item"></div>
+                                        }
+                                    </>
                                 </div>
                             </div>
                         )

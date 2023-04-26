@@ -66,5 +66,10 @@
         >.list-good-item:nth-last-child(-n+2) {
             border-bottom: 1px solid rgb(187, 187, 187);
         }
+
+        >.list-good-item:empty {
+            border-bottom: none;
+            border-right: none;
+        }
     }
 }

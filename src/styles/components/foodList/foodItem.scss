@@ -1,0 +1,31 @@
+@import '../../common/';
+
+.fi-container {
+    width: 300px;
+    border: 1px solid $dark-border-color;
+    border-radius: 3px;
+    padding: 2em;
+    font-size: 18px;
+    color: white;
+}
+
+.fi-header {
+    position: relative;
+
+    span {
+        width: 70%;
+        text-align: center;
+    }
+
+    i {
+        position: absolute;
+        right: 20px;
+    }
+
+    span,
+    i {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
