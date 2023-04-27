@@ -1,25 +1,32 @@
 @import '../../common/';
 
 .fi-container {
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     border: 1px solid $dark-border-color;
     border-radius: 3px;
-    padding: 2em;
+    padding: 10px;
     font-size: 18px;
     color: white;
+
+    &.in-bucket {
+        background-color: rgb(255, 255, 255, 0.3);
+    }
 }
 
 .fi-header {
-    position: relative;
+    width: 100%;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
 
     span {
+        display: block;
         width: 70%;
         text-align: center;
-    }
-
-    i {
-        position: absolute;
-        right: 20px;
+        margin: 0 auto;
     }
 
     span,

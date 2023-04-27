@@ -1,31 +1,31 @@
-import React, { useContext } from "react";
-import { FoodContext } from "../App";
-import './styles/listChoise.scss';
+import React from "react";
+
+import '../../styles/components/foodList/storeMenu.scss';
 
 interface IStoreMenuProps {
-    isBucket: boolean, 
+    isBucket: boolean,
     setIsBucket: (value: boolean) => void
 }
+
 const StoreMenu = (props: IStoreMenuProps) => {
 
     const { isBucket, setIsBucket } = props;
 
     return (
-        <div className="listChoise-container">
-            <div className={`listChoise-item ${isBucket ? 'active' : ''}`}>
-                <button
-                    onClick={() => setIsBucket(true)}
-                >
-                    Список
-                </button>
-            </div>
-            <div className={`listChoise-item ${!isBucket ? 'active' : ''}`}>
-                <button
-                    onClick={() => setIsBucket(false)}
-                >
-                    Корзина
-                </button>
-            </div>
+        <div className="sm-container">
+            <div className={`sm-button-hover ${!isBucket ? 'left' : 'right'}`}></div>
+            <button
+                className="sm-button first "
+                onClick={() => setIsBucket(false)}
+            >
+                Список
+            </button>
+            <button
+                className="sm-button last"
+                onClick={() => setIsBucket(true)}
+            >
+                Корзина
+            </button>
         </div >
     )
 }

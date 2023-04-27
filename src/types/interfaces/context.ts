@@ -7,7 +7,3 @@ export interface IFoodContext<T> {
     foodList: T| null
     setFoodList: Dispatch<SetStateAction<T | null>>
 }
-
-export interface IGoodContext<T> {
-    good: T| null
-}

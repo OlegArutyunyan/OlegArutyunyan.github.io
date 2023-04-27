@@ -1,4 +1,6 @@
-import { IFoodList } from "../types/interfaces/foodList";
+import { IFoodList, TAmountType } from "../types/interfaces/foodList";
+
+export const measurements: TAmountType[] = ['шт.' , 'кг' , 'уп.' , 'л']
 
 export const defaultFoodList: IFoodList = {
     "Овощи": [
@@ -196,7 +198,7 @@ export const defaultFoodList: IFoodList = {
             name: "Сметана",
             inBucket: false,
             measurementType: 'кг',
-            amount: 1,
+            amount: 0.2,
             step: 0.1,
         },
         {
@@ -367,5 +369,5 @@ export const defaultFoodList: IFoodList = {
             step: 1,
         },
     ],
-    "Дополнительные товары": []
+    "Другое": []
 }

@@ -1,0 +1,36 @@
+@import '../../common/';
+
+.sl-container {
+    width: 510px;
+    margin: 0 auto;
+}
+
+.sl-header {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px;
+    color: white;
+}
+
+.sl-add-new {
+    display: flex;
+    align-items: center;
+
+    >input {
+        height: 50px;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        width: 460px;
+        padding: 8px 15px;
+    }
+
+    >button {
+        border: none;
+        background-color: $dark-primary-color;
+        border-radius: 0 5px 5px 0;
+        width: 50px;
+        aspect-ratio: 1;
+    }
+}

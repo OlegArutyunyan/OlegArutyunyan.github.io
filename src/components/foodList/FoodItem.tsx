@@ -5,7 +5,7 @@ import { FoodContext } from './ShoppingList';
 import { IGood, IFoodContext, IFoodList } from '../../types/interfaces'
 import { changeFoodListValue } from './foodListActions';
 
-import '../../styles/components/foodList/foodList.scss';
+import '../../styles/components/foodList/foodItem.scss';
 
 interface IFoodItemProps {
     good: IGood,
@@ -22,29 +22,25 @@ const FoodItem = ({ good, category }: IFoodItemProps) => {
     } = good;
 
     return (
-        <div className="fi-container">
+        <div className={`fi-container ${inBucket && 'in-bucket'}`}>
             <div className="fi-header">
                 <span
-                    onClick={() => changeFoodListValue(category, name, true, 'add', setFoodList)}
+                    onClick={() => changeFoodListValue(category, name, 'addToBucket', setFoodList, !inBucket)}
                 >
                     {name}
                 </span>
-                {inBucket ?
-                    <i
-                        className="fa-solid fa-basket-shopping close"
-                        style={{ color: 'red' }}
-                        onClick={() => changeFoodListValue(category, name, false, 'add', setFoodList)}
-                    ></i>
-                    :
-                    <i
-                        className="fa-solid fa-basket-shopping bucket"
-                        onClick={() => changeFoodListValue(category, name, true, 'add', setFoodList)}
-                    ></i>
-                }
+                <i
+                    className={`fa-solid fa-basket-shopping`}
+                    style={inBucket ? { color: '#11dd11' } : {}}
+                    onClick={() => changeFoodListValue(category, name, 'addToBucket', setFoodList, !inBucket)}
+                ></i>
             </div>
             {inBucket &&
                 <div className="fi-adjust">
-                    <GoodAmount good={good} />
+                    <GoodAmount
+                        good={good}
+                        category={category}
+                    />
                 </div>
             }
         </div>

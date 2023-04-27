@@ -1,0 +1,63 @@
+@import '../../common/';
+
+.ga-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.ga-amount {
+    height: 40px;
+    display: flex;
+
+    &-dec,
+    &-inc {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: rgb(43, 43, 43);
+        color: white;
+        width: 40px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &-dec {
+        border-radius: 5px 0 0 5px;
+    }
+
+    &-inc {
+        border-radius: 0 5px 5px 0;
+    }
+}
+
+.ga-measurement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 60px;
+    padding-left: 10px;
+    background-color: white;
+
+    >select {
+        border: none;
+        height: 100%;
+        padding: 5px;
+        font-size: 17px;
+        color: $dark-background-color;
+        outline: none;
+    }
+
+    >span {
+        color: black;
+        font-weight: 600;
+        padding: 0 5px;
+        min-width: 30px;
+        text-align: center;
+    }
+}

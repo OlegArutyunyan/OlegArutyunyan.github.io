@@ -1,0 +1,61 @@
+@import '../../common/';
+
+.sm-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    width: 510px;
+    height: 50px;
+    position: relative;
+}
+
+.sm-button-hover {
+    position: absolute;
+    height: 100%;
+    width: 250px;
+    border-radius: 5px;
+    background-color: $dark-primary-color;
+    z-index: 10;
+    top: 0;
+    transition: margin 0.2s;
+
+    &.left {
+        margin: 0 260px 0 0;
+    }
+
+    &.right {
+        margin: 0 0 0 260px;
+    }
+
+}
+
+.sm-button {
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 23px;
+    color: white;
+    font-weight: 600;
+
+    &:hover {
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    &.first,
+    &.last {
+        top: 0;
+        z-index: 100;
+    }
+
+    &.first {
+        left: 0
+    }
+
+    &.last {
+        right: 0
+    }
+}

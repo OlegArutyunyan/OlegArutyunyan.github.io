@@ -1,40 +1,69 @@
 import { Dispatch, SetStateAction } from 'react';
 import { IFoodList, IGood } from '../../types/interfaces';
 
+type TActionTypes = 'addToBucket' | 'increment' | 'decrement' | 'measurementType' | 'amount';
+
 export const changeFoodListValue = (
     category: string,
     goodName: string,
-    newValue: string | boolean,
-    type: 'add' | 'increment' | 'decrement' | 'measurmentType',
-    setFunc: Dispatch<SetStateAction<IFoodList | null>>
+    type: TActionTypes,
+    setFunc: Dispatch<SetStateAction<IFoodList | null>>,
+    newValue?: string | boolean,
 ): void => {
     setFunc((goodsList) => {
-        const newGoodsList = JSON.parse(JSON.stringify(goodsList));
-        return newGoodsList[category].map((good: IGood) => {
-            if (good.name !== goodName) {
-                return good
+        let newGoodsList = JSON.parse(JSON.stringify(goodsList));
+        if (category === 'Другое' && type === 'addToBucket') {
+            if (newValue) {
+                newGoodsList['Другое'] = [...newGoodsList['Другое'], {
+                    name: goodName,
+                    inBucket: newValue,
+                    measurementType: 'шт.',
+                    amount: 1,
+                    step: 1,
+                }]
+            } else {
+                newGoodsList['Другое'] = newGoodsList['Другое'].filter((good: IGood) => good.name !== goodName);
             }
-            switch (type) {
-                case 'add':
-                    return {
-                        ...good,
-                        inBucket: newValue
-                    }
-                case 'increment':
-                case 'decrement':
-                    return {
-                        ...good,
-                        amount: getNewMeasuredValue(type, good.amount, good.step)
-                    }
-                case 'measurmentType':
-                    return {
-                        ...good,
-                        type: newValue
-                    }
-                default:
+            return newGoodsList;
+        }
+
+        newGoodsList = {
+            ...newGoodsList,
+            [category]: newGoodsList[category].map((good: IGood) => {
+                if (good.name !== goodName) {
                     return good;
-            }
-        })
+                }
+                switch (type) {
+                    case 'addToBucket':
+                        if (category === 'Другое' && newValue === false) {
+                            return;
+                        }
+                        return {
+                            ...good,
+                            inBucket: newValue
+                        }
+                    case 'increment':
+                    case 'decrement':
+                        return {
+                            ...good,
+                            amount: getNewMeasuredValue(type, good.amount, good.step)
+                        }
+                    case 'measurementType':
+                        return {
+                            ...good,
+                            measurementType: newValue
+                        }
+                    case 'amount':
+                        return {
+                            ...good,
+                            amount: newValue
+                        }
+                    default:
+                        return good;
+                }
+            })
+        }
+        return newGoodsList;
     })
 }
 
@@ -43,12 +72,13 @@ const getNewMeasuredValue = (
     currentValue: number,
     step: number,
 ) => {
+    const checkedValue = isNaN(currentValue) ? step : +currentValue
     switch (operationType) {
         case 'increment':
-            return currentValue + step > 20 ? 20 : currentValue + step;
+            return checkedValue + step > 20 ? 20 : checkedValue + step;
         case 'decrement':
-            return currentValue - step <= 0 ? currentValue : currentValue - step;
+            return checkedValue - step <= 0 ? checkedValue : currentValue - step;
         default:
-            return currentValue;
+            return checkedValue;
     }
 }

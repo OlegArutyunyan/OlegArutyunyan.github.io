@@ -2,32 +2,24 @@ import React, { createContext, useState } from 'react';
 
 import StoreMenu from './StoreMenu';
 import FoodList from './FoodList';
+import { changeFoodListValue } from './foodListActions';
 import { defaultFoodList } from '../../data/defaultFoodList';
 import { IFoodList, IFoodContext } from '../../types/interfaces';
 
-import './styles/App.scss';
+import '../../styles/components/foodList/shoppingList.scss';
 
 export const FoodContext = createContext<IFoodContext<IFoodList> | null>(null);
 
 const ShoppingList = () => {
 
     const [isBucket, setIsBucket] = useState(false);
-    const [newGoods, setNewGoods] = useState('');
+    const [newGood, setNewGood] = useState('');
     const [foodList, setFoodList] = useState<IFoodList | null>(defaultFoodList);
 
     const addItemToBucket = (e: React.FormEvent) => {
         e.preventDefault();
-        if (newGoods) {
-            setFoodList((prevList) => {
-                let newList = JSON.parse(JSON.stringify(prevList));
-                newList[newList.length - 1].goods.push({
-                    name: newGoods,
-                    inBucket: true
-                });
-                return newList
-            })
-        }
-        setNewGoods(() => '');
+        changeFoodListValue('Другое', newGood, 'addToBucket', setFoodList, true);
+        setNewGood('');
     }
 
     return (
@@ -43,8 +35,8 @@ const ShoppingList = () => {
                     <input
                         type="text"
                         placeholder='Добавьте товар или выберите из списка ниже'
-                        onChange={(event) => setNewGoods(event.target.value)}
-                        value={newGoods}
+                        onChange={(event) => setNewGood(event.target.value)}
+                        value={newGood}
                     />
                     <button
                         type='submit'
@@ -66,10 +58,6 @@ const ShoppingList = () => {
                             <FoodList type={'store'} />
                     }
                 </div>
-                <StoreMenu
-                    isBucket={isBucket}
-                    setIsBucket={setIsBucket}
-                />
             </FoodContext.Provider>
         </div>
     );
