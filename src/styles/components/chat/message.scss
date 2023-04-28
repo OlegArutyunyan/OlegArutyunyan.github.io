@@ -1,0 +1,20 @@
+@import '../../common/';
+
+.mes-container {
+    padding: 10px 20px;
+    margin: 5px 10px;
+    color: white;
+    font-size: 18px;
+    width: fit-content;
+    max-width: 80%;
+    border-radius: 20px;
+
+    &.secondary {
+        background-color: $dark-secondary-message;
+    }
+
+    &.primary {
+        background-color: $dark-primary-message;
+        margin: 10px 10px 10px auto;
+    }
+}

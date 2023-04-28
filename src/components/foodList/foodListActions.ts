@@ -73,12 +73,21 @@ const getNewMeasuredValue = (
     step: number,
 ) => {
     const checkedValue = isNaN(currentValue) ? step : +currentValue
+    let newAmount = checkedValue;
     switch (operationType) {
         case 'increment':
-            return checkedValue + step > 20 ? 20 : checkedValue + step;
+            newAmount = checkedValue + step;
+            break;
         case 'decrement':
-            return checkedValue - step <= 0 ? checkedValue : currentValue - step;
+            newAmount = currentValue - step;
+            break;
         default:
-            return checkedValue;
+            break;
     }
+    if (newAmount > 20) {
+        newAmount = 20;
+    } else if (newAmount <= 0) {
+        newAmount = step;
+    }
+    return parseFloat(newAmount.toFixed(2));
 }

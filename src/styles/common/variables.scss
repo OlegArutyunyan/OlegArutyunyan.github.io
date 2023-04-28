@@ -1,9 +1,18 @@
 //colors
-$dark-background-color:  rgba(68,70,84);
+$dark-background-color: rgba(68, 70, 84);
+$dark-component-background-color: rgb(52, 54, 71);
+
+$dark-input-color: rgb(116, 118, 133);
 $dark-border-color: rgb(187, 187, 187);
+
+$dark-main-action: #71aaeb;
+$dark-main-action-hover: #5195e2;
 $dark-primary-color: #71aaeb;
 
-$main-font: "SegoeUI","Roboto Condensed", sans-serif;
+$dark-primary-message:  #5195e2;
+$dark-secondary-message:  #71aaeb;
+
+$main-font: "SegoeUI", "Roboto Condensed", sans-serif;
 
 $breakpoint-xl: 1399px;
 $breakpoint-lg: 1199px;

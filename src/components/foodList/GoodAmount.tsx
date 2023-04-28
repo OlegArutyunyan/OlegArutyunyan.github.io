@@ -42,12 +42,7 @@ const GoodAmount = ({ good, category }: IGoodsAmountProps) => {
     }
 
     const inputChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value === '0' || e.target.value.match(/^0\.+/)) {
-            changeFoodListValue(category, name, 'amount', setFoodList, '0.')
-        }
-
-        if (!e.target.value.match(/^\d{0,2}$/)
-            && !e.target.value.match(/^0\.{1}\d{1,2}$/)) {
+        if (!e.target.value.match(/^[1-9]{0,1}[0-9]{0,1}\.{0,1}\d{0,2}$/)) {
             return;
         }
         changeFoodListValue(category, name, 'amount', setFoodList, e.target.value)
@@ -70,7 +65,6 @@ const GoodAmount = ({ good, category }: IGoodsAmountProps) => {
                         value={amount}
                         onChange={inputChangeAmount}
                     />
-                    {/* <span>{amount}</span> */}
                     <select
                         value={measurementType}
                         onChange={(e) => changeFoodListValue(category, name, 'measurementType', setFoodList, e.target.value)}
