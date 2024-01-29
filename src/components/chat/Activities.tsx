@@ -5,13 +5,21 @@ import '../../styles/components/chat/activities.scss';
 
 const activityList = [
     {
-        name: 'Список продуктов',
+        name: 'За покупками',
         navigateTo: '/foodlist'
+    },
+    {
+        name: 'Новости',
+        navigateTo: '/chat'
     },
     {
         name: 'Поработаем',
         navigateTo: '/timer'
-    }
+    },
+    {
+        name: 'Курс валют',
+        navigateTo: '/chat/'
+    },
 ]
 
 const Activities = () => {

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 import StoreMenu from './StoreMenu';
 import FoodList from './FoodList';
@@ -18,9 +18,30 @@ const ShoppingList = () => {
 
     const addItemToBucket = (e: React.FormEvent) => {
         e.preventDefault();
+        if (!newGood) {
+            return;
+        }
         changeFoodListValue('Другое', newGood, 'addToBucket', setFoodList, true);
         setNewGood('');
     }
+
+
+    useEffect(() => {
+        const savedFood = sessionStorage.getItem('food');
+        if (savedFood === null) {
+            return;
+        }
+        const parsedState = JSON.parse(savedFood);
+        setFoodList(parsedState);
+    }, []);
+
+    useEffect(() => {
+        const timer = setTimeout(() => sessionStorage.setItem('food', JSON.stringify(foodList)), 200);
+
+        return () => {
+            clearTimeout(timer);
+        }
+    }, [foodList]);
 
     return (
         <div className="sl-container">
@@ -42,6 +63,9 @@ const ShoppingList = () => {
                         type='submit'
                     >
                         <i className="fa-solid fa-plus"></i>
+                    </button>
+                    <button onClick={() => setFoodList(defaultFoodList)}>
+                        <i className="fa-solid fa-rotate-right"></i>
                     </button>
                 </form>
             </div>

@@ -174,6 +174,13 @@ export const defaultFoodList: IFoodList = {
             step: 1,
         },
         {
+            name: "Творог",
+            inBucket: false,
+            measurementType: 'кг',
+            amount: 0.3,
+            step: 1,
+        },
+        {
             name: "Масло слив.",
             inBucket: false,
             measurementType: 'шт.',

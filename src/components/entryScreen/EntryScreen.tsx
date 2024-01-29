@@ -8,7 +8,7 @@ const EntryScreen = () => {
     return (
         <div className='entry-container'>
             <div className="entry-greeting">
-                Добро пожаловать!
+                Привет, Олег!
             </div>
             <button
                 className='entry-button'

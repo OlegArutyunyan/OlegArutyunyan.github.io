@@ -24,6 +24,8 @@
     scrollbar-width: thin;
     display: flex;
     flex-direction: column;
+//delete
+    overflow: hidden;
 
     >.filler {
         flex: 1;

@@ -8,6 +8,7 @@ import '../styles/components/App.scss';
 const EntryScreen = lazy(() => import("./entryScreen/EntryScreen"));
 const ShoppingList = lazy(() => import("./foodList/ShoppingList"));
 const Chat = lazy(() => import("./chat/Chat"));
+const Game = lazy(() => import("./gameTemp/Game"));
 const Page404 = lazy(() => import("./page404/Page404"));
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
                 <Route path='/' element={<EntryScreen />} />
                 <Route path='/foodlist' element={<ShoppingList />} />
                 <Route path='/chat' element={<Chat />} />
+                <Route path='/game' element={<Game />} />
                 <Route path='/*' element={<Page404 />} />
             </Routes>
         </Suspense>
