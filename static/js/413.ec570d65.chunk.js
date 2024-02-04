@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfoodlist=self.webpackChunkfoodlist||[]).push([[413],{413:function(e,n,s){s.r(n);s(313);var t=s(417);n.default=function(){return(0,t.jsx)("div",{children:"404"})}}}]);
