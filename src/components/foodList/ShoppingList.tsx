@@ -27,7 +27,7 @@ const ShoppingList = () => {
 
 
     useEffect(() => {
-        const savedFood = sessionStorage.getItem('food');
+        const savedFood = localStorage.getItem('food');
         if (savedFood === null) {
             return;
         }
@@ -36,7 +36,7 @@ const ShoppingList = () => {
     }, []);
 
     useEffect(() => {
-        const timer = setTimeout(() => sessionStorage.setItem('food', JSON.stringify(foodList)), 200);
+        const timer = setTimeout(() => localStorage.setItem('food', JSON.stringify(foodList)), 200);
 
         return () => {
             clearTimeout(timer);
