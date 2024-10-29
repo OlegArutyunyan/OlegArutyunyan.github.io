@@ -104,6 +104,20 @@ export const defaultFoodList: IFoodList = {
             amount: 1,
             step: 1,
         },
+        {
+            name: "Немолоко",
+            inBucket: false,
+            measurementType: 'уп.',
+            amount: 1,
+            step: 1,
+        },
+        {
+            name: "Мюсли",
+            inBucket: false,
+            measurementType: 'уп.',
+            amount: 1,
+            step: 1,
+        },
     ],
     "Консервы, соусы и пр.": [
         {
@@ -254,6 +268,13 @@ export const defaultFoodList: IFoodList = {
         },
         {
             name: "Сосиски",
+            inBucket: false,
+            measurementType: 'уп.',
+            amount: 1,
+            step: 1,
+        },
+        {
+            name: "Курица для супа",
             inBucket: false,
             measurementType: 'уп.',
             amount: 1,
